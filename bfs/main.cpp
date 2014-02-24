@@ -76,6 +76,9 @@ int main(int argc, char** argv) {
     sol1.distances = (int*)malloc(sizeof(int) * g.num_nodes);
     solution sol2;
     sol2.distances = (int*)malloc(sizeof(int) * g.num_nodes);
+    solution sol3;
+    sol3.distances = (int*)malloc(sizeof(int) * g.num_nodes);
+
 
     // execute top-down version
 
@@ -90,6 +93,15 @@ int main(int argc, char** argv) {
     bfs_bottom_up(&g, &sol1);
     end_time = CycleTimer::currentSeconds();
     printf("Bottom up BFS time: %.3f sec\n", end_time - start_time);
+
+    // execute hybrid version
+
+
+    start_time = CycleTimer::currentSeconds();
+    bfs_hybrid(&g, &sol3);
+    end_time = CycleTimer::currentSeconds();
+    printf("Hybrid BFS time: %.3f sec\n", end_time - start_time);
+
 
     for (int i=0; i<g.num_nodes; i++) {
         if (sol1.distances[i] != sol2.distances[i]) {
