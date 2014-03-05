@@ -79,6 +79,12 @@ int main(int argc, char** argv) {
     solution sol3;
     sol3.distances = (int*)malloc(sizeof(int) * g.num_nodes);
 
+    // execute bottom-up version
+
+    start_time = CycleTimer::currentSeconds();
+    bfs_bottom_up(&g, &sol1);
+    end_time = CycleTimer::currentSeconds();
+    printf("Bottom up BFS time: %.3f sec\n", end_time - start_time);
 
     // execute top-down version
 
@@ -87,15 +93,7 @@ int main(int argc, char** argv) {
     double end_time = CycleTimer::currentSeconds();
     printf("Top down BFS time: %.3f sec\n", end_time - start_time);
 
-    // execute bottom-up version
-
-    start_time = CycleTimer::currentSeconds();
-    bfs_bottom_up(&g, &sol1);
-    end_time = CycleTimer::currentSeconds();
-    printf("Bottom up BFS time: %.3f sec\n", end_time - start_time);
-
     // execute hybrid version
-
 
     start_time = CycleTimer::currentSeconds();
     bfs_hybrid(&g, &sol3);
